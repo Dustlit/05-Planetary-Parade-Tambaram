@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetary Parade Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Event Banner Section -->
+    <section class="container">
+        <img src="sunimage.jpg" alt="Event Banner" class="banner">
+        <h1 style="font-family: 'Burtons'; font-size: 60px;">Planetary Parade</h1>
+        <h2>
+            <span style="color: #ff6600;">Join us on February 15th & 16th at Tambaram, Chennai for an unforgettable planetary alignment event.</span>
+        </h2>
+        <h2>
+            <span style="color: #ff6600;">Experience our Solar System with powerful telescopes!</span>
+        </h2>
+   
+             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <img src="logo.png" alt="Dustlit Logo" class="logo">
+           </div>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2><strong>🌟 Planets Alignment Event 🌟</strong></h2>
+            <p>
+                <strong>Dustlit</strong> proudly bring you the <em>Planetary Parade</em>, 
+                an extraordinary celestial experience. Together, we're committed to making astronomy accessible and enjoyable for everyone.
+            </p>
+            <p style="font-style: italic; color: #555;">
+                "Discover the wonders of the cosmos with expert guidance and state-of-the-art telescopes."
+            </p>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section class="container">
+        <h3><u>Inclusions:</u></h3>
+        <p>Jupiter, Saturn, Venus, Mars & Moon</p>
+
+        <h3><u>Package Details:</u></h3>
+        <p><strong>Price Per Person:</strong> ₹500/-</p>
+        <p><strong>Kids under 10 years old:</strong> ₹100/-</p>
+
+        <h3><u>Disclaimer:</u></h3>
+        <p>The occurrence of the event relies on weather conditions. If unfavorable, the event will be rescheduled.</p>
+        <p>
+            <strong>Date:</strong> 
+            <span style="color: #ff6600;">15th - 16th February 2025, 6:30 PM - 9:30 PM</span>
+        </p>
+        <p>
+            <strong>Location:</strong> 
+            <a href="https://maps.app.goo.gl/eQhj56Gcc4xu9NK88" target="_blank" style="color: #ff6600;">Dustlit - Planets Observation, Tambaram</a>
+        </p>
+    </section>
+
+    <!-- Event Itinerary Section -->
+    <section class="container">
+        <h2><strong>🌟 Event Itinerary: Unveil the Secrets of the Planets Alignment 🌟</strong></h2>
+        <ul style="text-align: left;">
+            <li><strong>🌌 Welcome & Introduction:</strong> <br>Introduction about Our Solar System.</li>
+            <li><strong>✨ Venus Observation:</strong> <br>Observe Venus and discuss its phases and brightness as the "Evening Star."</li>
+            <li><strong>🔭 Jupiter Viewing:</strong> <br>Explore Jupiter's bands, Great Red Spot, and its moons.</li>
+            <li><strong>🪐 Saturn Observation:</strong> <br>Admire Saturn's stunning rings and learn about its moons.</li>
+            <li><strong>🔴 Mars Viewing:</strong> <br>Spot Mars and discuss its surface features like polar ice caps.</li>
+            <li><strong>📖 Astronomy Talk:</strong> <br>A short talk on planetary alignments and their significance in astronomy.</li>
+            <li><strong>💫 Closing Remarks & Q&A:</strong> <br>End with a Q&A session to share thoughts and ask questions.</li>
+        </ul>
+    </section>
+
+    <!-- Event Registration Form Section -->
+    <div class="container">
+        <form id="registrationForm">
+
+            <h1>Event Registration</h1>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" required maxlength="10" pattern="\d{10}" placeholder="Enter 10-digit phone number">
+
+            <label for="attendees">Number of Attendees:</label>
+            <input type="number" id="attendees" name="attendees" required min="1" placeholder="Enter number of attendees" oninput="calculateAmount()">
+
+            <label for="kids">Number of Kids (Under 10):</label>
+            <input type="number" id="kids" name="kids" required min="0" value="0" placeholder="Enter number of kids" oninput="calculateAmount()">
+
+            <label>Select Event Date:</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="event_date" value="15th February 2025">15th February 2025 (Saturday)
+                </label>
+                <label>
+                        <input type="radio" name="event_date" value="16th February 2025">16th February 2025 (Sunday)
+                    </label>             
+            </div>
+
+            <p id="amount">Total Amount: ₹0</p>
+
+            <div class="payment-section">
+                <p>Payment Details:</p>
+                <div>
+                    <p>UPI Number: <span id="upiNumber1">7416930597</span></p>
+                    <button type="button" id="copyButton1">Copy UPI</button>
+                </div>
+                <div><p>or</p></div>
+                <div>
+                    <p>UPI Number: <span id="upiNumber2">9585866980</span></p>
+                    <button type="button" id="copyButton2">Copy UPI</button>
+                </div>
+            </div>
+
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

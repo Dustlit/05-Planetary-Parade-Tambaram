@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        .message-box {
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        .logo {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 36px;
+            color: #007bff;
+        }
+        p {
+            font-size: 18px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        .ticket {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px dashed #007bff;
+            border-radius: 10px;
+            background: #f9f9f9;
+            text-align: left;
+        }
+        .ticket h2 {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .ticket .details {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            font-size: 16px;
+        }
+        .ticket .details strong {
+            font-weight: bold;
+        }
+        .ticket .qr-code {
+            margin-top: 20px;
+            text-align: center;
+        }
+        /* Add this class for red text */
+        .red-text {
+            color: red;
+        }
+        /* Style for the download button */
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+    <!-- Load qrcode.js locally -->
+    <script src="qrcode.js"></script>
+    <!-- Load html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="message-box" id="thankYouPage">
+        <img src="logo.png" alt="Dustlit Logo" class="logo">
+        <h1>Thank You!</h1>
+        <p>Your registration for the Planetary Parade event has been successfully submitted.</p>
+        <p>We look forward to seeing you at the event!</p>
+        <p>
+            <strong>Location:</strong> <br>
+            <a href="https://maps.app.goo.gl/eQhj56Gcc4xu9NK88" target="_blank" style="color: #000000;">Dustlit - Planets Observation, Tambaram</a>
+        </p>
+        <div class="ticket">
+            <h2>Your Event Ticket</h2>
+            <div class="details">
+                <strong>Name:</strong> <span id="ticketName" class="red-text"></span>
+                <strong>Phone Number:</strong> <span id="ticketPhone" class="red-text"></span>
+                <strong>Attendees:</strong> <span id="ticketAttendees" class="red-text"></span>
+                <strong>Kids (Under 10):</strong> <span id="ticketKids" class="red-text"></span>
+                <strong>Total Amount:</strong> <span id="ticketAmount" class="red-text"></span>
+                <strong>Event Date:</strong> <span id="ticketEventDate" class="red-text"></span>
+                <strong>Registration Time:</strong> <span id="ticketTime" class="red-text"></span>
+            </div>
+            <!-- Add the screenshot instruction here -->
+            <p><strong>Please take a screenshot of this ticket for entry.</strong></p>
+            <div class="qr-code" id="qrCode"></div>
+        </div>
+        <!-- Download Button -->
+        <button class="download-btn" onclick="downloadEntirePage()">Download Ticket</button>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = decodeURIComponent(urlParams.get('name') || '');
+        const phone = decodeURIComponent(urlParams.get('phone') || '');
+        const attendees = decodeURIComponent(urlParams.get('attendees') || '');
+        const kids = decodeURIComponent(urlParams.get('kids') || '');
+        const amount = decodeURIComponent(urlParams.get('amount') || '');
+        const eventDate = decodeURIComponent(urlParams.get('event_date') || '');
+        const time = decodeURIComponent(urlParams.get('time') || '');
+
+        document.getElementById('ticketName').textContent = name;
+        document.getElementById('ticketPhone').textContent = phone;
+        document.getElementById('ticketAttendees').textContent = attendees;
+        document.getElementById('ticketKids').textContent = kids;
+        document.getElementById('ticketAmount').textContent = `₹${amount}`;
+        document.getElementById('ticketEventDate').textContent = eventDate;
+        document.getElementById('ticketTime').textContent = time;
+
+        // Generate a QR code with the registration details
+        const qrData = `Name: ${name}\nPhone: ${phone}\nAttendees: ${attendees}\nKids: ${kids}\nAmount: ₹${amount}\nEvent Date: ${eventDate}\nTime: ${time}`;
+        console.log("QR Data:", qrData); // Debugging
+
+        const qrCodeElement = document.getElementById("qrCode");
+
+        if (qrCodeElement && qrData.trim()) {
+            new QRCode(qrCodeElement, {
+                text: qrData,
+                width: 200,
+                height: 200
+            });
+        } else {
+            console.error("QR Code element not found or data is empty.");
+        }
+
+        // Function to capture and download the entire page
+        function downloadEntirePage() {
+            const pageElement = document.getElementById('thankYouPage');
+            html2canvas(pageElement).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'thank-you-ticket.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
