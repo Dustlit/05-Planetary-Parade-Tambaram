@@ -109,6 +109,8 @@
             <a href="https://maps.app.goo.gl/eQhj56Gcc4xu9NK88" target="_blank" style="color: #000000;">Dustlit - Planets Observation, Tambaram</a>
         </p>
         <div class="ticket">
+            <!-- Download Button -->
+        <button class="download-btn" onclick="downloadEntirePage()">Download Ticket</button>
             <h2>Your Event Ticket</h2>
             <div class="details">
                 <strong>Name:</strong> <span id="ticketName" class="red-text"></span>
@@ -120,11 +122,10 @@
                 <strong>Registration Time:</strong> <span id="ticketTime" class="red-text"></span>
             </div>
             <!-- Add the screenshot instruction here -->
-            <p><strong>Please take a screenshot of this ticket for entry.</strong></p>
+            <p><strong>Download Ticket for entry.</strong></p>
             <div class="qr-code" id="qrCode"></div>
         </div>
-        <!-- Download Button -->
-        <button class="download-btn" onclick="downloadEntirePage()">Download Ticket</button>
+    
     </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
